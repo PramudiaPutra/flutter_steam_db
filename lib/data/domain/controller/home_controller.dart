@@ -6,6 +6,11 @@ import 'package:get/get.dart';
 class HomeController extends GetxController {
   final _homeService = HomeServices();
 
+  RxBool windows = true.obs;
+  RxBool linux = true.obs;
+  RxBool mac = true.obs;
+  RxBool onCheckedEvent = false.obs;
+
   Future<Featured> getFeatured() async {
     final result = await _homeService.getFeatured();
 

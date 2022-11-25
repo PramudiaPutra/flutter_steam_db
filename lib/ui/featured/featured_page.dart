@@ -11,28 +11,135 @@ class FeaturedPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final HomeController homeController = Get.find();
-    return Container(
-      color: AppColor().colorDarkerBlue,
-      child: FutureBuilder(
-        future: homeController.getFeatured(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              var featuredList = [
-                ...snapshot.data!.featuredWin,
-                ...snapshot.data!.featuredLinux,
-                ...snapshot.data!.featuredMac
-              ];
-              return _buildList(featuredList);
-            } else {
-              return const Center(child: CircularProgressIndicator.adaptive());
-            }
-          } else {
-            return const Center(
-              child: Text('no data'),
-            );
-          }
-        },
+    return Scaffold(
+      body: Container(
+        color: AppColor().colorDarkerBlue,
+        child: SafeArea(
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Obx(
+                    () => Checkbox(
+                      value: homeController.windows.value,
+                      onChanged: (value) {
+                        homeController.windows.value = value!;
+                        homeController.onCheckedEvent.value =
+                            !homeController.onCheckedEvent.value;
+                      },
+                    ),
+                  ),
+                  Text(
+                    'windows',
+                    style: TextStyle(
+                        fontFamily: 'Helvetica', color: AppColor().colorWhite),
+                  ),
+                  Obx(
+                    () => Checkbox(
+                      value: homeController.linux.value,
+                      onChanged: (value) {
+                        homeController.linux.value = value!;
+                        homeController.onCheckedEvent.value =
+                            !homeController.onCheckedEvent.value;
+                      },
+                    ),
+                  ),
+                  Text(
+                    'linux',
+                    style: TextStyle(
+                        fontFamily: 'Helvetica', color: AppColor().colorWhite),
+                  ),
+                  Obx(
+                    () => Checkbox(
+                      value: homeController.mac.value,
+                      onChanged: (value) {
+                        homeController.mac.value = value!;
+                        homeController.onCheckedEvent.value =
+                            !homeController.onCheckedEvent.value;
+                      },
+                    ),
+                  ),
+                  Text(
+                    'mac',
+                    style: TextStyle(
+                        fontFamily: 'Helvetica', color: AppColor().colorWhite),
+                  ),
+                ],
+              ),
+              Obx(
+                () => !homeController.onCheckedEvent.value
+                    ? Expanded(
+                        child: FutureBuilder(
+                          future: homeController.getFeatured(),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.done) {
+                                var featuredList = [
+                                  ...homeController.windows.value == true
+                                      ? snapshot.data!.featuredWin
+                                      : <Items>[],
+                                  ...homeController.linux.value == true
+                                      ? snapshot.data!.featuredLinux
+                                      : <Items>[],
+                                  ...homeController.mac.value == true
+                                      ? snapshot.data!.featuredMac
+                                      : <Items>[],
+                                  // ...snapshot.data!.featuredLinux,
+                                  // ...snapshot.data!.featuredMac
+                                ];
+                                return _buildList(featuredList);
+                              } else {
+                                return const Center(
+                                    child:
+                                        CircularProgressIndicator.adaptive());
+                              }
+                            } else {
+                              return const Center(
+                                child: Text('no data'),
+                              );
+                            }
+                          },
+                        ),
+                      )
+                    : Expanded(
+                        child: FutureBuilder(
+                          future: homeController.getFeatured(),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.done) {
+                                var featuredList = [
+                                  ...homeController.windows.value == true
+                                      ? snapshot.data!.featuredWin
+                                      : <Items>[],
+                                  ...homeController.linux.value == true
+                                      ? snapshot.data!.featuredLinux
+                                      : <Items>[],
+                                  ...homeController.mac.value == true
+                                      ? snapshot.data!.featuredMac
+                                      : <Items>[],
+                                  // ...snapshot.data!.featuredLinux,
+                                  // ...snapshot.data!.featuredMac
+                                ];
+                                return _buildList(featuredList);
+                              } else {
+                                return const Center(
+                                    child:
+                                        CircularProgressIndicator.adaptive());
+                              }
+                            } else {
+                              return const Center(
+                                child: Text('no data'),
+                              );
+                            }
+                          },
+                        ),
+                      ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
