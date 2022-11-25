@@ -1,4 +1,5 @@
 import 'package:flutter_steam_db/data/domain/repository/home_repository.dart';
+import 'package:flutter_steam_db/data/model/home/featured_category_model.dart';
 import 'package:flutter_steam_db/data/model/home/featured_model.dart';
 import 'package:flutter_steam_db/utils/app_constant.dart';
 import 'package:http/http.dart';
@@ -12,11 +13,25 @@ class HomeServices implements HomeRepository {
         await get(Uri.https(_endPoint.baseUrl, _endPoint.featured));
 
     if (response.statusCode == 200) {
-      print('status code: ${response.statusCode}');
+      print('status code: ${response.body}');
       return featuredFromJson(response.body);
     } else {
       print('failed status code: ${response.statusCode}');
       return featuredFromJson(response.body);
+    }
+  }
+
+  @override
+  Future<FeaturedCategories> getFeaturedCategories() async {
+    final response =
+        await get(Uri.https(_endPoint.baseUrl, _endPoint.featuredCategories));
+
+    if (response.statusCode == 200) {
+      print('status code: ${response.body}');
+      return featuredCategoriesFromJson(response.body);
+    } else {
+      print('failed status code: ${response.statusCode}');
+      return featuredCategoriesFromJson(response.body);
     }
   }
 }

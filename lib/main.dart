@@ -38,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
-    _homeController.getFeatured();
+    _homeController.getFeaturedCategories();
   }
 
   @override
