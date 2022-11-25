@@ -20,6 +20,10 @@ class CardItem extends StatelessWidget {
             Image.network(
               _platform.smallCapsuleImage!,
               scale: 1.5,
+              errorBuilder: (context, error, stackTrace) => Image.asset(
+                'assets/icons/steam.png',
+                scale: 15,
+              ),
             ),
             const SizedBox(width: 8),
             Expanded(
