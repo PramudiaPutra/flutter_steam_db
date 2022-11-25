@@ -17,8 +17,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'SteamDb App',
       theme: ThemeData(
+        // fontFamily: 'Helvetica',
         primarySwatch: Colors.blue,
       ),
       home: const HomePage(),

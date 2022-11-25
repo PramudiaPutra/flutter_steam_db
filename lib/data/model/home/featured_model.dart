@@ -52,38 +52,38 @@ class Featured {
 
 class FeaturedPlatform {
   FeaturedPlatform({
-    this.id,
-    this.type,
-    this.name,
-    this.discounted,
+    required this.id,
+    required this.type,
+    required this.name,
+    required this.discounted,
     this.discountPercent,
     this.originalPrice,
     this.finalPrice,
     this.currency,
     this.largeCapsuleImage,
     this.smallCapsuleImage,
-    this.windowsAvailable,
-    this.macAvailable,
-    this.linuxAvailable,
+    required this.windowsAvailable,
+    required this.macAvailable,
+    required this.linuxAvailable,
     this.streamingvideoAvailable,
     this.headerImage,
     this.controllerSupport,
     this.discountExpiration,
   });
 
-  int? id;
-  int? type;
-  String? name;
-  bool? discounted;
+  int id;
+  int type;
+  String name;
+  bool discounted;
   int? discountPercent;
   int? originalPrice;
   int? finalPrice;
   String? currency;
   String? largeCapsuleImage;
   String? smallCapsuleImage;
-  bool? windowsAvailable;
-  bool? macAvailable;
-  bool? linuxAvailable;
+  bool windowsAvailable;
+  bool macAvailable;
+  bool linuxAvailable;
   bool? streamingvideoAvailable;
   String? headerImage;
   String? controllerSupport;

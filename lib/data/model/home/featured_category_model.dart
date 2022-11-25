@@ -75,7 +75,7 @@ class Item {
   Item({
     this.id,
     this.type,
-    this.name,
+    required this.name,
     this.discounted,
     this.discountPercent,
     this.originalPrice,
@@ -95,7 +95,7 @@ class Item {
 
   int? id;
   int? type;
-  String? name;
+  String name;
   bool? discounted;
   int? discountPercent;
   int? originalPrice;
