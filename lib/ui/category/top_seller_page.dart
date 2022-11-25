@@ -5,8 +5,8 @@ import 'package:flutter_steam_db/ui/widgets/card_item.dart';
 import 'package:flutter_steam_db/utils/app_constant.dart';
 import 'package:get/get.dart';
 
-class FeaturedPage extends StatelessWidget {
-  const FeaturedPage({super.key});
+class TopSellerPage extends StatelessWidget {
+  const TopSellerPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,16 +14,11 @@ class FeaturedPage extends StatelessWidget {
     return Container(
       color: AppColor().colorDarkerBlue,
       child: FutureBuilder(
-        future: homeController.getFeatured(),
+        future: homeController.getFeaturedCategories(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             if (snapshot.connectionState == ConnectionState.done) {
-              var featuredList = [
-                ...snapshot.data!.featuredWin,
-                ...snapshot.data!.featuredLinux,
-                ...snapshot.data!.featuredMac
-              ];
-              return _buildList(featuredList);
+              return _buildList(snapshot.data!.topSellers.items);
             } else {
               return const Center(child: CircularProgressIndicator.adaptive());
             }
@@ -37,12 +32,12 @@ class FeaturedPage extends StatelessWidget {
     );
   }
 
-  Widget _buildList(List<Items> platform) {
+  Widget _buildList(List<Items> items) {
     return ListView.builder(
       itemBuilder: ((context, index) {
-        return CardItem(platform[index]);
+        return CardItem(items[index]);
       }),
-      itemCount: platform.length,
+      itemCount: items.length,
     );
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_steam_db/ui/discount/discount_page.dart';
+import 'package:flutter_steam_db/ui/category/discount_page.dart';
+import 'package:flutter_steam_db/ui/category/new_release_page.dart';
+import 'package:flutter_steam_db/ui/category/top_seller_page.dart';
 import 'package:flutter_steam_db/ui/featured/featured_page.dart';
 import 'package:flutter_steam_db/utils/app_constant.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
@@ -11,6 +13,8 @@ class HomePage extends StatelessWidget {
     return [
       const FeaturedPage(),
       const DiscountPage(),
+      const NewReleasePage(),
+      const TopSellerPage(),
     ];
   }
 
@@ -24,8 +28,22 @@ class HomePage extends StatelessWidget {
         activeColorSecondary: AppColor().colorWhite,
       ),
       PersistentBottomNavBarItem(
-        icon: const Icon(CupertinoIcons.archivebox),
-        title: 'category',
+        icon: const Icon(CupertinoIcons.divide),
+        title: 'discount',
+        activeColorPrimary: AppColor().colorLightBlue,
+        inactiveColorPrimary: AppColor().colorBlue,
+        activeColorSecondary: AppColor().colorWhite,
+      ),
+      PersistentBottomNavBarItem(
+        icon: const Icon(CupertinoIcons.time),
+        title: 'new release',
+        activeColorPrimary: AppColor().colorLightBlue,
+        inactiveColorPrimary: AppColor().colorBlue,
+        activeColorSecondary: AppColor().colorWhite,
+      ),
+      PersistentBottomNavBarItem(
+        icon: const Icon(CupertinoIcons.tag),
+        title: 'top seller',
         activeColorPrimary: AppColor().colorLightBlue,
         inactiveColorPrimary: AppColor().colorBlue,
         activeColorSecondary: AppColor().colorWhite,

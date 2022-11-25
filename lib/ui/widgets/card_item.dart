@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_steam_db/data/model/home/featured_model.dart';
+import 'package:flutter_steam_db/data/model/home/item_model.dart';
 import 'package:flutter_steam_db/utils/app_constant.dart';
-import 'package:intl/intl.dart';
 import 'package:money2/money2.dart';
 
 class CardItem extends StatelessWidget {
-  CardItem(FeaturedPlatform platform, {super.key}) : _platform = platform;
-  final FeaturedPlatform _platform;
+  CardItem(Items platform, {super.key}) : _platform = platform;
+  final Items _platform;
   final color = AppColor();
 
   @override
@@ -129,7 +128,7 @@ class CardItem extends StatelessWidget {
                         style: TextStyle(
                           fontFamily: 'Helvetica',
                           decoration: TextDecoration.lineThrough,
-                          color: AppColor().colorWhite,
+                          color: AppColor().colorWhite.withOpacity(0.5),
                           fontSize: 12,
                         ),
                       )
